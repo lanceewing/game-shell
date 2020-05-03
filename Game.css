@@ -1,23 +1,43 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 body {
   background: #000;
   color: #B2CDDE;
   font-family: courier new;
+  overflow: hidden;
+  padding: 0px;
+  margin: 0px;
+}
+@media (orientation: landscape) {
+  #screen {
+    --scale: calc(var(--window-inner-height) / var(--height-no-unit));
+  }
+}
+@media (orientation: portrait) {
+  #screen {
+    --scale: calc(var(--window-inner-width) / var(--width-no-unit));
+  }
 }
 #screen {
+  --width-no-unit: 700;
+  --height-no-unit: 700;
+  --width: calc(var(--width-no-unit) * 1px);
+  --height: calc(var(--height-no-unit) * 1px);
   margin: auto;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   position: relative;
-  width: 700px;
-  height: 880px;
+  width: var(--width);
+  height: var(--height);
   overflow: hidden;
   cursor: crosshair;
-  background: -webkit-linear-gradient(red, yellow);
-  background: -o-linear-gradient(red, yellow);
-  background: -moz-linear-gradient(red, yellow);
   background: linear-gradient(red, yellow);
+  transform: scale3d(var(--scale), var(--scale), 1);
+  margin-left: calc((var(--window-inner-width, --width-no-unit) * 1px - var(--width)) / 2);
+  margin-top: calc((var(--window-inner-height, --height-no-unit) * 1px - var(--height)) / 2);
 }
 #screen * {
   position: absolute;

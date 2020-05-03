@@ -15,8 +15,19 @@ class Game {
      * Starts the game.
      */
     start() {
+        this.resizeScreen();
+        window.onresize = e => this.resizeScreen(e);
         this.userInput.enableInput();
+        this.running = true;
         this.loop();
+    }
+
+    /**
+     * Scales the screen div to fit the whole screen.
+     */
+    resizeScreen(e) {
+        this.screen.style.setProperty('--window-inner-width', window.innerWidth);
+        this.screen.style.setProperty('--window-inner-height', window.innerHeight);
     }
 
     /**
@@ -33,20 +44,20 @@ class Game {
 
     /**
      * This is the main game loop, in theory executed on every animation frame.
-     * 
+     *
      * @param {number} now Time. The delta of this value is used to calculate the movements of Sprites.
      */
     loop(now) {
         // Immediately request another invocation on the next
         requestAnimationFrame(this._loop);
-        
+
         // Calculates the time since the last invocation of the game loop.
         this.updateDelta(now);
-        
+
         // Update all objects on the screen.
         this.updateObjects();
 
-  
+
 
         this.userInput.processUserInput();
     }
@@ -61,7 +72,7 @@ class Game {
      */
     updateDelta(now) {
         if (now) {
-            this.delta = now - (this.lastTime? this.lastTime : (now - 16));
+            this.delta = now - (this.lastTime ? this.lastTime : (now - 16));
             this.stepFactor = this.delta * 0.06;
             this.lastTime = now;
             this.time += this.delta;
