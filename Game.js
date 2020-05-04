@@ -31,25 +31,13 @@ class Game {
     }
 
     /**
-     * This is a wrapper around the main game loop whose primary purpose is to make
-     * the this reference point to the Game object within the main game loop. This 
-     * is the method invoked by requestAnimationFrame and it quickly delegates to 
-     * the main game loop.
-     *  
-     * @param {number} now Time in milliseconds.
-     */
-    _loop(now) {
-        $.game.loop(now);
-    }
-
-    /**
      * This is the main game loop, in theory executed on every animation frame.
      *
      * @param {number} now Time. The delta of this value is used to calculate the movements of Sprites.
      */
     loop(now) {
-        // Immediately request another invocation on the next
-        requestAnimationFrame(this._loop);
+        // Immediately request another invocation on the next.
+        requestAnimationFrame(now => this.loop(now));
 
         // Calculates the time since the last invocation of the game loop.
         this.updateDelta(now);
