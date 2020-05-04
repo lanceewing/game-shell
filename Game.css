@@ -8,6 +8,8 @@ body {
   overflow: hidden;
   padding: 0px;
   margin: 0px;
+  height: 100vh;
+  position: relative;
 }
 @media (orientation: landscape) {
   main {
@@ -21,20 +23,16 @@ body {
 }
 main {
   --size: 700px;
-  margin: auto;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: relative;
+  top: 50%;
+  left: 50%;
+  position: absolute;
   width: var(--size);
   height: var(--size);
   overflow: hidden;
   cursor: crosshair;
   background: linear-gradient(red, yellow);
-  transform: scale3d(var(--scale), var(--scale), 1);
-  margin-left: calc((var(--scale-portrait, 1) * var(--size) - var(--size)) / 2);
-  margin-top: calc((var(--scale-landscape, 1) * var(--size) - var(--size)) / 2);
+  transform: scale3d(var(--scale), var(--scale), 1) translate(-50%, -50%);
+  transform-origin: 0px 0px;
 }
 main * {
   position: absolute;

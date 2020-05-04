@@ -43,6 +43,8 @@ class Game {
         this.screen.style.setProperty('--scale-portrait', window.innerWidth / this.screen.offsetWidth);
         this.screen.style.setProperty('--scale-landscape', window.innerHeight / this.screen.offsetHeight);
         this.scale = getComputedStyle(this.screen).getPropertyValue('--scale');
+        this.screenOffsetTop = this.screen.offsetTop;
+        this.screenOffsetLeft = this.screen.offsetLeft;
     }
 
     /**
@@ -87,7 +89,7 @@ class Game {
      */
     updateObjects() {
 
-        this.ego.update();
+        this.ego.update(this);
 
     }
 }

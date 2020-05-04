@@ -4,10 +4,10 @@ class Sprite extends HTMLElement {
         super();
     }
 
-    update() {
+    update(game) {
         let rect = this.getBoundingClientRect();
-        this.x = ~~rect.x;
-        this.y = ~~rect.y;
+        this.x = ~~(rect.x / game.scale);
+        this.y = ~~(rect.y / game.scale);
         this.style.setProperty("--ego-x", this.x);
         this.style.setProperty("--ego-y", this.y);
     }
