@@ -10,14 +10,11 @@
     <main>
       <div style="display:fixed; bottom: 0px; color: blue; font-size: 3em;">Hello</div>
     </main>
-    <script>var $ = {};</script>
     <script src="UserInput.js"></script>
+    <script src="Sprite.js"></script>
     <script src="Game.js"></script>
     <script>
-      window.onload = function() { 
-        $.game = new Game(document.getElementsByTagName("main")[0]);
-        $.game.start();
-      };
+      onload = () => new Game(document.getElementsByTagName("main")[0]);
     </script>
   </body>
 </html>

@@ -8,7 +8,16 @@ class Game {
     constructor(screen) {
         this.screen = screen;
         this.time = 0;
+        this.defineCustomElements();
         this.userInput = new UserInput(this, screen);
+        this.start();
+    }
+
+    /**
+     * 
+     */
+    defineCustomElements() {
+        customElements.define('x-sprite', Sprite);
     }
 
     /**
@@ -17,6 +26,10 @@ class Game {
     start() {
         this.resizeScreen();
         window.onresize = e => this.resizeScreen(e);
+
+        this.ego = document.createElement('x-sprite');
+        this.screen.appendChild(this.ego);
+
         this.userInput.enableInput();
         this.running = true;
         this.loop();
