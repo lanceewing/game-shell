@@ -42,9 +42,19 @@ main {
 main * {
   position: absolute;
 }
-x-sprite {
-  width: 100px;
-  height: 100px;
+x-ego {
+  --ego-width: 50px;
+  --ego-height: 50px;
+  width: var(--ego-width);
+  height: var(--ego-height);
   background-color: blue;
   border-radius: 50%;
+  left: calc(var(--width) / 2 - var(--ego-width) / 2);
+  top: calc(var(--height) / 2 - var(--ego-height) / 2);
+  animation: rotateLeft 4s linear infinite;
+
+}
+@keyframes rotateLeft {
+  from { transform: rotate(0deg) translateX(320px); }
+  to   { transform: rotate(360deg) translateX(320px); }
 }

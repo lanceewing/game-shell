@@ -18,6 +18,7 @@ class Game {
      */
     defineCustomElements() {
         customElements.define('x-sprite', Sprite);
+        customElements.define('x-ego', Ego);
     }
 
     /**
@@ -27,7 +28,7 @@ class Game {
         this.resizeScreen();
         window.onresize = e => this.resizeScreen(e);
 
-        this.ego = document.createElement('x-sprite');
+        this.ego = document.createElement('x-ego');
         this.screen.appendChild(this.ego);
 
         this.userInput.enableInput();
