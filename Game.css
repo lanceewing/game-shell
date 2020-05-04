@@ -38,13 +38,13 @@ main * {
   position: absolute;
 }
 x-ego {
-  --ego-size: 50px;
-  width: var(--ego-size);
-  height: var(--ego-size);
+  --sprite-size: 50px;
+  width: var(--sprite-size);
+  height: var(--sprite-size);
   background-color: blue;
   border-radius: 50%;
-  left: calc(var(--size) / 2 - var(--ego-size) / 2);
-  top: calc(var(--size) / 2 - var(--ego-size) / 2);
+  left: calc(var(--size) / 2 - var(--sprite-size) / 2);
+  top: calc(var(--size) / 2 - var(--sprite-size) / 2);
   animation: rotateLeft 4s linear infinite;
 }
 @keyframes rotateLeft {
