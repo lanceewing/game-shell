@@ -10,16 +10,16 @@ body {
   margin: 0px;
 }
 @media (orientation: landscape) {
-  #screen {
+  main {
     --scale: calc(var(--window-inner-height) / var(--height-no-unit));
   }
 }
 @media (orientation: portrait) {
-  #screen {
+  main {
     --scale: calc(var(--window-inner-width) / var(--width-no-unit));
   }
 }
-#screen {
+main {
   --width-no-unit: 700;
   --height-no-unit: 700;
   --width: calc(var(--width-no-unit) * 1px);
@@ -39,6 +39,6 @@ body {
   margin-left: calc((var(--window-inner-width, --width-no-unit) * 1px - var(--width)) / 2);
   margin-top: calc((var(--window-inner-height, --height-no-unit) * 1px - var(--height)) / 2);
 }
-#screen * {
+main * {
   position: absolute;
 }
