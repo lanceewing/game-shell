@@ -40,8 +40,9 @@ class Game {
      * Scales the screen div to fit the whole screen.
      */
     resizeScreen(e) {
-        this.screen.style.setProperty('--window-inner-width', window.innerWidth);
-        this.screen.style.setProperty('--window-inner-height', window.innerHeight);
+        this.screen.style.setProperty('--scale-portrait', window.innerWidth / this.screen.offsetWidth);
+        this.screen.style.setProperty('--scale-landscape', window.innerHeight / this.screen.offsetHeight);
+        this.scale = getComputedStyle(this.screen).getPropertyValue('--scale');
     }
 
     /**
@@ -85,6 +86,8 @@ class Game {
      * 
      */
     updateObjects() {
+
+        this.ego.update();
 
     }
 }

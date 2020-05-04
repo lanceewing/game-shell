@@ -11,50 +11,51 @@ body {
 }
 @media (orientation: landscape) {
   main {
-    --scale: calc(var(--window-inner-height) / var(--height-no-unit));
+    --scale: var(--scale-landscape);
   }
 }
 @media (orientation: portrait) {
   main {
-    --scale: calc(var(--window-inner-width) / var(--width-no-unit));
+    --scale: var(--scale-portrait);
   }
 }
 main {
-  --width-no-unit: 700;
-  --height-no-unit: 700;
-  --width: calc(var(--width-no-unit) * 1px);
-  --height: calc(var(--height-no-unit) * 1px);
+  --size: 700px;
   margin: auto;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   position: relative;
-  width: var(--width);
-  height: var(--height);
+  width: var(--size);
+  height: var(--size);
   overflow: hidden;
   cursor: crosshair;
   background: linear-gradient(red, yellow);
   transform: scale3d(var(--scale), var(--scale), 1);
-  margin-left: calc((var(--window-inner-width, --width-no-unit) * 1px - var(--width)) / 2);
-  margin-top: calc((var(--window-inner-height, --height-no-unit) * 1px - var(--height)) / 2);
+  margin-left: calc((var(--scale-portrait, 1) * var(--size) - var(--size)) / 2);
+  margin-top: calc((var(--scale-landscape, 1) * var(--size) - var(--size)) / 2);
 }
 main * {
   position: absolute;
 }
 x-ego {
-  --ego-width: 50px;
-  --ego-height: 50px;
-  width: var(--ego-width);
-  height: var(--ego-height);
+  --ego-size: 50px;
+  width: var(--ego-size);
+  height: var(--ego-size);
   background-color: blue;
   border-radius: 50%;
-  left: calc(var(--width) / 2 - var(--ego-width) / 2);
-  top: calc(var(--height) / 2 - var(--ego-height) / 2);
+  left: calc(var(--size) / 2 - var(--ego-size) / 2);
+  top: calc(var(--size) / 2 - var(--ego-size) / 2);
   animation: rotateLeft 4s linear infinite;
-
 }
 @keyframes rotateLeft {
   from { transform: rotate(0deg) translateX(320px); }
   to   { transform: rotate(360deg) translateX(320px); }
+}
+x-ego::before {
+  content: var(--ego-x, 0);
+}
+x-ego::after {
+  content: var(--ego-y, 0);
 }
