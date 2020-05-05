@@ -33,6 +33,7 @@ main {
   background: linear-gradient(red, yellow);
   transform: scale3d(var(--scale), var(--scale), 1) translate(-50%, -50%);
   transform-origin: 0px 0px;
+  border-radius: 50%;
 }
 main * {
   position: absolute;
@@ -45,15 +46,18 @@ x-ego {
   border-radius: 50%;
   left: calc(var(--size) / 2 - var(--sprite-size) / 2);
   top: calc(var(--size) / 2 - var(--sprite-size) / 2);
-  animation: rotateLeft 4s linear infinite;
-}
-@keyframes rotateLeft {
-  from { transform: rotate(0deg) translateX(320px); }
-  to   { transform: rotate(360deg) translateX(320px); }
+  transform: rotate(0deg) translateY(325px);
+  transition: transform 345600s linear;
 }
 x-ego::before {
   content: var(--ego-x, 0);
 }
 x-ego::after {
   content: var(--ego-y, 0);
+}
+x-ego.clockwise {
+  transform: rotate(31104000deg) translateY(325px);
+}
+x-ego.anticlockwise {
+  transform: rotate(-31104000deg) translateY(325px);
 }
