@@ -14,6 +14,8 @@ class UserInput {
     this.dragStart = null;
     this.dragNow = null;
     this.dragEnd = null;
+    this.joystick = 0;
+    this.oldJoystick = 0;
   }
 
   /**
@@ -133,6 +135,10 @@ class UserInput {
    */
   keyDown(e) {
     this.keys[e.keyCode] = 1;
+
+    if ((e.keyCode >= 37) && (e.keyCode <= 40)) {
+      this.joystick |= (1 << (e.keyCode - 37));
+    }
   }
 
   /**
@@ -142,6 +148,10 @@ class UserInput {
    */
   keyUp(e) {
     this.keys[e.keyCode] = 0;
+
+    if ((e.keyCode >= 37) && (e.keyCode <= 40)) {
+      this.joystick &= ~(1 << (e.keyCode - 37));
+    }
   }
 
   /**
@@ -157,6 +167,7 @@ class UserInput {
     this.screen.ontouchstart = null;
     this.screen.ontouchmove = null;
     this.oldkeys = this.keys = {};
+    this.oldJoystick = this.joystick = 0;
   }
 
   /**
@@ -175,5 +186,11 @@ class UserInput {
     for (var k in this.keys) {
       this.oldkeys[k] = this.keys[k];
     }
+    this.oldJoystick = this.joystick;
   }
 }
+
+UserInput.LEFT  = 0x01;
+UserInput.UP    = 0x02;
+UserInput.RIGHT = 0x04;
+UserInput.DOWN  = 0x08;
