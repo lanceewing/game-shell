@@ -37,6 +37,11 @@ class Ego extends Sprite {
         //     let currentTransform = window.getComputedStyle(this).getPropertyValue('transform');
         //     this.style.setProperty('transform', currentTransform);
         // }
+        if ((movingClockwise || movingAntiClockwise) && !moveClockwise && !moveAntiClockwise) {
+            // Read where we are and apply it directly to the element, so that it remains at rest.
+            let currentOffsetDistance = window.getComputedStyle(this).getPropertyValue('offset-distance');
+            this.style.setProperty('offset-distance', currentOffsetDistance);
+        }
         if (movingAntiClockwise && !moveAntiClockwise) {
             this.classList.remove('anticlockwise');
         }
@@ -49,10 +54,10 @@ class Ego extends Sprite {
         if (moveClockwise && !movingClockwise) {
             this.classList.add('clockwise');
         }
-        // if ((moveClockwise || moveAntiClockwise) && !movingClockwise && !movingAntiClockwise) {
-        //     // Remove previous at rest inline style, so that class rules kick in.
-        //     this.style.removeProperty('transform');
-        // }
+        if ((moveClockwise || moveAntiClockwise) && !movingClockwise && !movingAntiClockwise) {
+            // Remove previous at rest inline style, so that class rules kick in.
+            this.style.removeProperty('offset-distance');
+        }
 
     }
 

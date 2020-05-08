@@ -46,8 +46,13 @@ x-ego {
   border-radius: 50%;
   left: calc(var(--size) / 2 - var(--sprite-size) / 2);
   top: calc(var(--size) / 2 - var(--sprite-size) / 2);
-  transform: rotate(0deg) translateY(325px);
-  transition: transform 345600s linear;
+  /*transform: rotate(0deg) translateY(325px);
+  transition: transform 345600s linear;*/
+
+  offset-path: path('M 0, 25 m -300, 0 a 300,300 0 1,0 650,0 a 300,300 0 1,0 -650,0 Z');
+  /*animation: move 4s linear infinite;*/
+
+  /*transition: offset-distance 4s linear;*/
 }
 x-ego::before {
   content: var(--ego-x, 0);
@@ -56,8 +61,31 @@ x-ego::after {
   content: var(--ego-y, 0);
 }
 x-ego.clockwise {
-  transform: rotate(31104000deg) translateY(325px);
+  /* transform: rotate(31104000deg) translateY(325px); */
+  /*offset-distance: 100%;*/
+  animation: clockwise 4s linear reverse infinite;
 }
 x-ego.anticlockwise {
-  transform: rotate(-31104000deg) translateY(325px);
+  /* transform: rotate(-31104000deg) translateY(325px); */
+  /*offset-distance: -100%;*/
+  animation: anticlockwise 4s linear infinite;
+}
+@keyframes clockwise {
+  0% {
+    offset-distance: 51%;
+  }
+  50% {
+    offset-distance: 100%;
+  }
+  51% {
+    offset-distance: 1%;
+  }
+  100% {
+    offset-distance: 50%;
+  }
+}
+@keyframes anticlockwise {
+  100% {
+    offset-distance: 100%;
+  }
 }
