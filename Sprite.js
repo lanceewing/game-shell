@@ -7,7 +7,7 @@ class Sprite extends HTMLElement {
     getSize() {
         if (!this.size) {
             let spriteSize = getComputedStyle(this).getPropertyValue('--sprite-size');
-            spriteSize.trim().replace('', '');
+            spriteSize.trim().replace('px', '');
             this.size = parseInt(spriteSize);
         }
         return this.size;
@@ -31,8 +31,8 @@ class Sprite extends HTMLElement {
         this.style.setProperty("--ego-x", this.cx);
         this.style.setProperty("--ego-y", this.cy);
 
-        let xx = this.x -350;
-        let yy = this.y - 350;
+        let xx = this.cx - 350;
+        let yy = this.cy - 350;
 
         this.style.setProperty("--ego-xx", xx);
         this.style.setProperty("--ego-yy", yy);

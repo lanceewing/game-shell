@@ -3,7 +3,7 @@
   transform: translate(350px, 350px);
 }
 .marker {
-  offset-path: path('M 0, 0 m -230, 229');
+  offset-path: path('M -230, 230');
   transform: translate(350px, 350px);
 }
 *, *::before, *::after {
@@ -57,8 +57,9 @@ x-ego {
   /*transform: rotate(0deg) translateY(325px);
   transition: transform 345600s linear;*/
 
-  /* offset-path: path('M 0, 0 m -325, 0 a 325,325 0 1,0 650,0 a 325,325 0 1,0 -650,0'); */
-  offset-path: path('M 0, 0 m -230, 229 a 1,1 0 1,0 459,-459 a 1,1 0 1,0 -459,459');
+  /* offset-path: path('M 0, 0 m -325, 0 a 1,1 0 1,0 650,0 a 1,1 0 1,0 -650,0'); */
+  /* offset-path: path('M 0, 0 m -230, 230 a 1,1 0 1,0 459,-459 a 1,1 0 1,0 -459,459'); */
+  offset-path: path('M -230, 230');
 
   /*animation: move 4s linear infinite;*/
 
