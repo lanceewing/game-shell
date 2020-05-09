@@ -1,3 +1,11 @@
+.track {
+  stroke: #ccc;
+  transform: translate(350px, 350px);
+}
+.marker {
+  offset-path: path('M 0, 0 m -230, 229');
+  transform: translate(350px, 350px);
+}
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -44,15 +52,19 @@ x-ego {
   height: var(--sprite-size);
   background-color: blue;
   border-radius: 50%;
-  left: calc(var(--size) / 2 - var(--sprite-size) / 2);
-  top: calc(var(--size) / 2 - var(--sprite-size) / 2);
+  left: calc(var(--size) / 2); /* - var(--sprite-size) / 2);*/
+  top: calc(var(--size) / 2); /* - var(--sprite-size) / 2);*/
   /*transform: rotate(0deg) translateY(325px);
   transition: transform 345600s linear;*/
 
-  offset-path: path('M 0, 25 m -300, 0 a 300,300 0 1,0 650,0 a 300,300 0 1,0 -650,0 Z');
+  /* offset-path: path('M 0, 0 m -325, 0 a 325,325 0 1,0 650,0 a 325,325 0 1,0 -650,0'); */
+  offset-path: path('M 0, 0 m -230, 229 a 1,1 0 1,0 459,-459 a 1,1 0 1,0 -459,459');
+
   /*animation: move 4s linear infinite;*/
 
   /*transition: offset-distance 4s linear;*/
+
+  /*animation: jump 1s ease-out alternate infinite;*/
 }
 x-ego::before {
   content: var(--ego-x, 0);
@@ -63,29 +75,31 @@ x-ego::after {
 x-ego.clockwise {
   /* transform: rotate(31104000deg) translateY(325px); */
   /*offset-distance: 100%;*/
-  animation: clockwise 4s linear reverse infinite;
+  animation: clockwise 4s linear reverse infinite; /*, jump 1s ease-out alternate infinite;*/
 }
 x-ego.anticlockwise {
   /* transform: rotate(-31104000deg) translateY(325px); */
   /*offset-distance: -100%;*/
-  animation: anticlockwise 4s linear infinite;
+  animation: anticlockwise 4s linear infinite; /*, jump 1s ease-out alternate infinite; */
 }
 @keyframes clockwise {
-  0% {
-    offset-distance: 51%;
-  }
-  50% {
-    offset-distance: 100%;
-  }
-  51% {
-    offset-distance: 1%;
-  }
   100% {
-    offset-distance: 50%;
+    offset-distance: 100%;
   }
 }
 @keyframes anticlockwise {
   100% {
     offset-distance: 100%;
+  }
+}
+@keyframes jump {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(0px);    
+  }
+  100% {
+    transform: translateY(-100px);
   }
 }

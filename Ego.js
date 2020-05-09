@@ -39,8 +39,8 @@ class Ego extends Sprite {
         // }
         if ((movingClockwise || movingAntiClockwise) && !moveClockwise && !moveAntiClockwise) {
             // Read where we are and apply it directly to the element, so that it remains at rest.
-            let currentOffsetDistance = window.getComputedStyle(this).getPropertyValue('offset-distance');
-            this.style.setProperty('offset-distance', currentOffsetDistance);
+            let currentOffsetDistance = window.getComputedStyle(this).getPropertyValue('offset-distance').replace('%', '');
+            this.style.setProperty('offset-distance', Math.round(currentOffsetDistance) + '%');
         }
         if (movingAntiClockwise && !moveAntiClockwise) {
             this.classList.remove('anticlockwise');

@@ -23,12 +23,19 @@ class Sprite extends HTMLElement {
     update(game) {
         let radius = this.getRadius();
         let rect = this.getBoundingClientRect();
-        this.x = ~~((rect.x - game.screenX) / game.scale);
-        this.y = ~~((rect.y - game.screenY) / game.scale);
+        this.x = Math.round((rect.x - game.screenX) / game.scale);
+        this.y = Math.round((rect.y - game.screenY) / game.scale);
         this.cx = this.x + radius;
         this.cy = this.y + radius;
+
         this.style.setProperty("--ego-x", this.cx);
         this.style.setProperty("--ego-y", this.cy);
+
+        let xx = this.x -350;
+        let yy = this.y - 350;
+
+        this.style.setProperty("--ego-xx", xx);
+        this.style.setProperty("--ego-yy", yy);
     }
 
 }
