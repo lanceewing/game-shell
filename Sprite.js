@@ -23,19 +23,27 @@ class Sprite extends HTMLElement {
     update(game) {
         let radius = this.getRadius();
         let rect = this.getBoundingClientRect();
-        this.x = Math.round((rect.x - game.screenX) / game.scale);
-        this.y = Math.round((rect.y - game.screenY) / game.scale);
-        this.cx = this.x + radius;
-        this.cy = this.y + radius;
 
-        this.style.setProperty("--ego-x", this.cx);
-        this.style.setProperty("--ego-y", this.cy);
+        // this.x = Math.round((rect.x - game.screenX) / game.scale);
+        // this.y = Math.round((rect.y - game.screenY) / game.scale);
+        // this.cx = this.x + radius;
+        // this.cy = this.y + radius;
+        // this.pathX = this.cx - 350;
+        // this.pathY = this.cy - 350;
+        // this.style.setProperty("--path-x", this.pathX);
+        // this.style.setProperty("--path-y", this.pathY);
 
-        let xx = this.cx - 350;
-        let yy = this.cy - 350;
+        this.cx = Math.round(((rect.x + (rect.width / 2)) - game.screenX) / game.scale);
+        this.cy = Math.round(((rect.y + (rect.height / 2)) - game.screenY) / game.scale);
+        this.x = this.cx - radius;
+        this.y = this.cy - radius;
+        this.pathX = this.cx - 350;
+        this.pathY = this.cy - 350;
+        this.style.setProperty("--path-x", this.pathX);
+        this.style.setProperty("--path-y", this.pathY);
 
-        this.style.setProperty("--ego-xx", xx);
-        this.style.setProperty("--ego-yy", yy);
+        let marker = document.querySelector('.marker');
+        marker.style.setProperty('--marker-path', "path('M " + this.pathX + ", " + this.pathY + "')");
     }
 
 }
