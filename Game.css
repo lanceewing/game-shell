@@ -64,11 +64,9 @@ x-ego::after {
   content: var(--ego-y, 0);
 }
 x-ego.clockwise {
-  /* transform: rotate(31104000deg) translateY(325px); */
   animation: clockwise 4s linear reverse infinite; /*, jump 1s ease-out alternate infinite;*/
 }
 x-ego.anticlockwise {
-  /* transform: rotate(-31104000deg) translateY(325px); */
   animation: anticlockwise 4s linear infinite; /*, jump 1s ease-out alternate infinite; */
 }
 @keyframes clockwise {

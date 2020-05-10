@@ -15,26 +15,26 @@ class Ego extends Sprite {
         this.pathX = 0;
         this.pathY = 325;
         this.updatePath();
-
-        this.onanimationstart = e => this.onAnimationStart(e);
-    }
-
-    onAnimationStart(e) {
-        console.log('Animation started. animationName: ' + e.animationName + ', elapsedTime: ' + e.elapsedTime);
     }
 
     /**
      * 
      */
     updatePath() {
-        let startX = this.pathX;
-        let startY = this.pathY;
+        // Calculate heading from center point (0,0) to current ego position.
+        this.heading = Math.atan2(0 - this.pathY, 0 - this.pathX);
+
+        // Adjust current position according to desired radius and heading.
+        let startX = -(Math.round(Math.cos(this.heading) * 325));
+        let startY = -(Math.round(Math.sin(this.heading) * 325));
         let endX = -(startX);
         let endY = -(startY);
         let dx = (endX - startX);
         let dy = (endY - startY);
+
         this.newPath = `path("M 0, 0 m ${startX}, ${startY} a 1,1 0 1,0 ${dx},${dy} a 1,1 0 1,0 ${-dx},${-dy} Z")`;
         this.style.setProperty('--ego-path', this.newPath);
+        this.style.setProperty('--heading', this.heading);
     }
 
     /**
@@ -68,11 +68,6 @@ class Ego extends Sprite {
         if (moveClockwise && moveAntiClockwise) {
             return;
         }
-
-        // If ego was previously moving but is now not moving, then update offset-path.
-        // if ((movingClockwise || movingAntiClockwise) && !moveClockwise && !moveAntiClockwise) {
-        //     this.updatePath();
-        // }
 
         if (movingAntiClockwise && !moveAntiClockwise) {
             this.classList.remove('anticlockwise');

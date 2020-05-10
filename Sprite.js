@@ -29,12 +29,6 @@ class Sprite extends HTMLElement {
         this.y = this.cy - radius;
         this.pathX = this.cx - 350;
         this.pathY = this.cy - 350;
-
-        let currentOffsetDistance = getComputedStyle(this).getPropertyValue('offset-distance');
-        this.style.setProperty("--ego-offset-distance", currentOffsetDistance);
-
-        // this.style.setProperty("--path-x", this.pathX);
-        // this.style.setProperty("--path-y", this.pathY);
     }
 
 }
