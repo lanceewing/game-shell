@@ -29,6 +29,7 @@ class Game {
         window.onresize = e => this.resizeScreen(e);
 
         this.ego = document.createElement('x-ego');
+        this.ego.init(this);
         this.screen.appendChild(this.ego);
 
         this.userInput.enableInput();

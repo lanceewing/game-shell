@@ -52,19 +52,10 @@ x-ego {
   height: var(--sprite-size);
   background-color: blue;
   border-radius: 50%;
-  left: calc(var(--size) / 2); /* - var(--sprite-size) / 2);*/
-  top: calc(var(--size) / 2); /* - var(--sprite-size) / 2);*/
-  /*transform: rotate(0deg) translateY(325px);
-  transition: transform 345600s linear;*/
+  left: calc(var(--size) / 2);
+  top: calc(var(--size) / 2);
 
-  offset-path: path('M 0, 0 m -325, 0 a 1,1 0 1,0 650,0 a 1,1 0 1,0 -650,0');
-
-
-  /*offset-path: path('M -230, 230');*/
-
-  /*animation: move 4s linear infinite;*/
-
-  /*transition: offset-distance 4s linear;*/
+  offset-path: var(--ego-path);
 
   /*animation: jump 1s ease-out alternate infinite;*/
 }
