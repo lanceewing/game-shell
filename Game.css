@@ -1,11 +1,3 @@
-.track {
-  stroke: #ccc;
-  transform: translate(350px, 350px);
-}
-.marker {
-  offset-path: var(--marker-path);
-  transform: translate(350px, 350px);
-}
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -54,8 +46,14 @@ x-ego {
   border-radius: 50%;
   left: calc(var(--size) / 2);
   top: calc(var(--size) / 2);
-
   offset-path: var(--ego-path);
+
+  /* width: 0;
+  height: 0;
+  border-left: 70px solid transparent;
+  border-right: 70px solid transparent;
+  border-top: 100px solid red;
+  border-radius: 50%; */
 
   /*animation: jump 1s ease-out alternate infinite;*/
 }
@@ -67,12 +65,10 @@ x-ego::after {
 }
 x-ego.clockwise {
   /* transform: rotate(31104000deg) translateY(325px); */
-  /*offset-distance: 100%;*/
   animation: clockwise 4s linear reverse infinite; /*, jump 1s ease-out alternate infinite;*/
 }
 x-ego.anticlockwise {
   /* transform: rotate(-31104000deg) translateY(325px); */
-  /*offset-distance: -100%;*/
   animation: anticlockwise 4s linear infinite; /*, jump 1s ease-out alternate infinite; */
 }
 @keyframes clockwise {
