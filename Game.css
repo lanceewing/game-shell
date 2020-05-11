@@ -30,38 +30,60 @@ main {
   height: var(--size);
   overflow: hidden;
   cursor: crosshair;
-  background: linear-gradient(red, yellow);
+  /* background: linear-gradient(red, yellow); */
   transform: scale3d(var(--scale), var(--scale), 1) translate(-50%, -50%);
   transform-origin: 0px 0px;
-  border-radius: 50%;
+  /* border-radius: 50%; */
+  perspective: 350px;
 }
 main * {
   position: absolute;
 }
 x-ego {
   --sprite-size: 50px;
-  width: var(--sprite-size);
-  height: var(--sprite-size);
-  background-color: blue;
-  border-radius: 50%;
   left: calc(var(--size) / 2);
   top: calc(var(--size) / 2);
   offset-path: var(--ego-path);
-
-  /* width: 0;
+  /* clip-path: polygon( 0 49px, 23px 0, 27px 0, 49px 49px, 0 49px ); */
+  width: 0;
   height: 0;
-  border-left: 70px solid transparent;
-  border-right: 70px solid transparent;
-  border-top: 100px solid red;
-  border-radius: 50%; */
-
-  /*animation: jump 1s ease-out alternate infinite;*/
+  border-left: calc(var(--sprite-size) / 2) solid transparent;
+  border-right: calc(var(--sprite-size) / 2) solid transparent;
+  border-bottom: calc(var(--sprite-size) / 2.5) solid gray;
+  /* animation: jump 1s ease-out alternate infinite; */
+  border-top-right-radius: 50%;
+  border-top-left-radius: 50%;
+  box-shadow: #675c5c 3px 6px 0px 1px, #675c5c -3px 6px 0px 1px;
+  transform-style: preserve-3d;
+  transform: rotateX(90deg);
 }
 x-ego::before {
-  content: var(--ego-x, 0);
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: orange;
+  position: absolute;
+  left: -5px;
+  top: 21px;
+  transform: scaleY(2) rotate(45deg);
+  box-shadow: inset 0 0px 2px 3px rgb(134, 19, 0);
+  filter: blur(0.5px) drop-shadow(2px 4px 6px red);
 }
 x-ego::after {
-  content: var(--ego-y, 0);
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-color: black;
+  position: absolute;
+  left: -8px;
+  top: 6px;
+  border-top-right-radius: 45%;
+  border-top-left-radius: 45%;
+  box-shadow: inset #e4fffe 0px 0px 2px 2px, #505050 0 0 2px 1px, grey 0px -14px 0px -6px, grey 0px -14px 26px 3px;
+  border-style: groove;
+  border-width: 2px;
+  background: rgb(0, 165, 173);
+  border-bottom: gray 9px solid;
 }
 x-ego.clockwise {
   animation: clockwise 4s linear reverse infinite; /*, jump 1s ease-out alternate infinite;*/
