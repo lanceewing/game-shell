@@ -46,16 +46,16 @@ x-bullet {
   width: 8px;
   background-color: rgba(197, 179, 88, 0.5);
   color: rgba(197, 179, 88, 0.3);
-  box-shadow: 0 0 10px 10px;
-  border-radius: 50%;
+  box-shadow: 0 0 5px 5px;
+  /* border-radius: 50%; */
   animation: shoot 0.5s linear;
 }
 @keyframes shoot {
   0% {
-    transform: translate(var(--start-x), var(--start-y));
+    transform: translate(var(--start-x), var(--start-y)) scaleY(2) scaleX(1) rotate(45deg);
   }
   100% {
-    transform: translate(var(--end-x), var(--end-y));
+    transform: translate(var(--end-x), var(--end-y)) scaleY(1) scaleX(0.5) rotate(45deg);
   }
 }
 x-ego {
@@ -78,29 +78,23 @@ x-ego {
 }
 x-ego::before {
   content: "";
-  width: 10px;
   height: 10px;
+  width: 10px;
+  top: 21px;
+  left: -5px;
+  transform: scaleY(2) rotate(45deg);
   background-color: orange;
   position: absolute;
-  left: -5px;
-  top: 21px;
-  transform: scaleY(2) rotate(45deg);
-  box-shadow: inset 0 0px 2px 3px rgb(134, 19, 0);
-  filter: blur(0.5px) drop-shadow(2px 4px 6px red);
   animation: flame 50ms linear alternate infinite;
 }
 @keyframes flame {
   0% {
-    height: 10px;
-    top: 21px;
-    box-shadow: inset 0 0px 2px 3px rgb(134, 19, 0);
-    filter: blur(0.5px) drop-shadow(2px 2px 4px red);
+    box-shadow: inset 0 0px 2px 3px rgb(134, 19, 0), 0px 0px 1px 2px rgba(134, 19, 0, 0.5);
+    filter: blur(0.5px) drop-shadow(2px 2px 4px red) saturate(0.6);
   }
   100% {
-    height: 11px;
-    top: 22px;
     box-shadow: inset 0 0px 2px 2px rgb(134, 19, 0);
-    filter: blur(0px) drop-shadow(2px 2px 5px red);
+    filter: blur(0px) drop-shadow(2px 2px 5px red) saturate(0.6);
   }
 }
 x-ego::after {
@@ -120,10 +114,10 @@ x-ego::after {
   border-bottom: gray 9px solid;
 }
 x-ego.clockwise {
-  animation: clockwise 4s linear reverse infinite; /*, jump 1s ease-out alternate infinite;*/
+  animation: clockwise 3s linear reverse infinite; /*, jump 1s ease-out alternate infinite;*/
 }
 x-ego.anticlockwise {
-  animation: anticlockwise 4s linear infinite; /*, jump 1s ease-out alternate infinite; */
+  animation: anticlockwise 3s linear infinite; /*, jump 1s ease-out alternate infinite; */
 }
 @keyframes clockwise {
   100% {
