@@ -19,6 +19,7 @@ class Game {
     defineCustomElements() {
         customElements.define('x-sprite', Sprite);
         customElements.define('x-ego', Ego);
+        customElements.define('x-bullet', Bullet);
     }
 
     /**
@@ -32,9 +33,41 @@ class Game {
         this.ego.init(this);
         this.screen.appendChild(this.ego);
 
+        this.objs = [];
+
         this.userInput.enableInput();
         this.running = true;
         this.loop();
+    }
+
+    /**
+     * Adds a Sprite to the game.
+     * 
+     * @param {*} obj The Sprite to add to the game.
+     */
+    add(obj) {
+        this.screen.appendChild(obj);
+        this.objs.push(obj);
+    }
+
+    /**
+     * Removes a Sprite from the game.
+     * 
+     * @param {*} obj  The Sprite to remove from the game.
+     */
+    remove(obj) {
+        // Remove the Sprite from the screen.
+        try {
+            this.screen.removeChild(obj);
+        } catch (e) {
+            // Ignore. We don't care if it has already been removed.
+        }
+
+        // Remove the Sprite from our list of managed objects.
+        let i = objs.indexOf(obj);
+        if (i != -1) {
+            this.objs.splice(i, 1);
+        }
     }
 
     /**

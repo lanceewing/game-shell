@@ -39,6 +39,25 @@ main {
 main * {
   position: absolute;
 }
+x-bullet {
+  left: calc(var(--size) / 2);
+  top: calc(var(--size) / 2);
+  height: 8px;
+  width: 8px;
+  background-color: rgba(197, 179, 88, 0.5);
+  color: rgba(197, 179, 88, 0.3);
+  box-shadow: 0 0 10px 10px;
+  border-radius: 50%;
+  animation: shoot 1s linear;
+}
+@keyframes shoot {
+  0% {
+    transform: translate(var(--start-x), var(--start-y));
+  }
+  100% {
+    transform: translate(var(--end-x), var(--end-y));
+  }
+}
 x-ego {
   --sprite-size: 50px;
   left: calc(var(--size) / 2);

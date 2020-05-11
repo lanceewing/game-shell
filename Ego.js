@@ -44,6 +44,15 @@ class Ego extends Sprite {
     update(game) {
         super.update(game);
 
+        // Fire button. Space bar. Mouse click.
+        if ((!game.userInput.oldKeys[32] && game.userInput.keys[32])) {
+
+            let bullet = new Bullet();
+            bullet.init(game, this.pathX, this.pathY);
+            game.add(bullet);
+
+        }
+
         // If the user input direction hasn't changed, then don't change anything.
         if (game.userInput.joystick == game.userInput.oldJoystick) {
             return;
