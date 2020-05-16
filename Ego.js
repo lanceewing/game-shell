@@ -48,7 +48,7 @@ class Ego extends Sprite {
         if ((!game.userInput.oldKeys[32] && game.userInput.keys[32])) {
             let heading = Math.atan2(0 - this.pathY, 0 - this.pathX);
             let bullet = new Bullet();
-            bullet.init(game, this.pathX, this.pathY, heading + 0.79);
+            bullet.init(game, this.pathX - 4, this.pathY - 4, heading + 0.79);
             game.add(bullet);
         }
 

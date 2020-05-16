@@ -62,7 +62,6 @@ x-ego {
   left: calc(var(--size) / 2);
   top: calc(var(--size) / 2);
   offset-path: var(--ego-path);
-  /* clip-path: polygon( 0 49px, 23px 0, 27px 0, 49px 49px, 0 49px ); */
   width: 0;
   height: 0;
   border-left: calc(var(--sprite-size) / 2) solid transparent;
