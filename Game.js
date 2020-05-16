@@ -50,7 +50,7 @@ class Game {
         for (let i=0; i<30; i++) {
             let star = new Star();
             star.init(this);
-            this.add(star);
+            this.screen.appendChild(star);
         }
     }
 

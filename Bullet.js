@@ -16,13 +16,14 @@ class Bullet extends Sprite {
      * @param {*} endX 
      * @param {*} endY 
      */
-    init(game, startX, startY, endX = 0, endY = 0) {
+    init(game, startX, startY, rotation, endX = 0, endY = 0) {
         this.game = game;
 
         this.style.setProperty('--start-x', `${startX}px`);
         this.style.setProperty('--start-y', `${startY}px`);
         this.style.setProperty('--end-x', `${endX}px`);
         this.style.setProperty('--end-y', `${endY}px`);
+        this.style.setProperty('--rotation', `${rotation}rad`);
 
         this.onanimationend = e => this.animationEnd(e);
     }

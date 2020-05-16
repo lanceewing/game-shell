@@ -46,11 +46,10 @@ class Ego extends Sprite {
 
         // Fire button. Space bar. Mouse click.
         if ((!game.userInput.oldKeys[32] && game.userInput.keys[32])) {
-
+            let heading = Math.atan2(0 - this.pathY, 0 - this.pathX);
             let bullet = new Bullet();
-            bullet.init(game, this.pathX, this.pathY);
+            bullet.init(game, this.pathX, this.pathY, heading + 0.79);
             game.add(bullet);
-
         }
 
         // If the user input direction hasn't changed, then don't change anything.
