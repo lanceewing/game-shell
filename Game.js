@@ -20,6 +20,7 @@ class Game {
         customElements.define('x-sprite', Sprite);
         customElements.define('x-ego', Ego);
         customElements.define('x-bullet', Bullet);
+        customElements.define('x-star', Star);
     }
 
     /**
@@ -35,9 +36,22 @@ class Game {
 
         this.objs = [];
 
+        this.createStars();
+
         this.userInput.enableInput();
         this.running = true;
         this.loop();
+    }
+
+    /**
+     * Creates the stars that come out of the screen.
+     */
+    createStars() {
+        for (let i=0; i<30; i++) {
+            let star = new Star();
+            star.init(this);
+            this.add(star);
+        }
     }
 
     /**

@@ -23,14 +23,13 @@ body {
 }
 main {
   --size: 700px;
-  top: 50%;
-  left: 50%;
+  top: 50vh;
+  left: 50vw;
   position: absolute;
   width: var(--size);
   height: var(--size);
-  /* overflow: hidden; */
+  overflow: hidden;
   cursor: crosshair;
-  /* background: linear-gradient(red, yellow); */
   transform: scale3d(var(--scale), var(--scale), 1) translate(-50%, -50%);
   transform-origin: 0px 0px;
   /* border-radius: 50%; */
@@ -74,7 +73,7 @@ x-ego {
   border-top-left-radius: 50%;
   box-shadow: #675c5c 3px 6px 0px 1px, #675c5c -3px 6px 0px 1px;
   transform-style: preserve-3d;
-  transform: rotateX(90deg);
+  z-index: 10;
 }
 x-ego::before {
   content: "";
@@ -86,6 +85,7 @@ x-ego::before {
   background-color: orange;
   position: absolute;
   animation: flame 50ms linear alternate infinite;
+  clip-path: polygon( -6px 14px, 14px -6px, 14px 14px, -6px 14px );
 }
 @keyframes flame {
   0% {
@@ -138,5 +138,35 @@ x-ego.anticlockwise {
   }
   100% {
     transform: translateY(-100px);
+  }
+}
+x-star {
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(255, 255, 255);
+	border-radius: 50%;
+	position: absolute;
+	opacity: 0;
+  left: calc(var(--size) / 2);
+  top: calc(var(--size) / 2);
+	height: 3px;
+  width: 3px;
+  animation: star var(--duration) linear infinite var(--delay);
+  transform-style: preserve-3d;
+  transform: rotateX(90deg);
+  z-index: 0;
+}
+@keyframes star {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  30% {
+    opacity: 0.5;
+  }
+  70% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2) translate(var(--end-x), var(--end-y));
+    opacity: 0;
   }
 }
