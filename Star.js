@@ -16,8 +16,8 @@ class Star extends HTMLElement {
         this.game = game;
 
         let heading = Math.random() * Math.PI * 2;
-        let endX = -(Math.round(Math.cos(heading) * 325));
-        let endY = -(Math.round(Math.sin(heading) * 325));
+        let endX = -(Math.round(Math.cos(heading) * game.CIRCLE_RADIUS));
+        let endY = -(Math.round(Math.sin(heading) * game.CIRCLE_RADIUS));
         let delay = Math.round(Math.random() * -5000);
         let duration = Math.round(Math.random() * 500) + 1000;
 

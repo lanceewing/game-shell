@@ -8,6 +8,7 @@ class Game {
     constructor(screen) {
         this.screen = screen;
         this.time = 0;
+        this.CIRCLE_RADIUS = 310;
         this.defineCustomElements();
         this.userInput = new UserInput(this, screen);
         this.start();
@@ -78,7 +79,7 @@ class Game {
         }
 
         // Remove the Sprite from our list of managed objects.
-        let i = objs.indexOf(obj);
+        let i = this.objs.indexOf(obj);
         if (i != -1) {
             this.objs.splice(i, 1);
         }

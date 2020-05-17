@@ -20,6 +20,10 @@ class Sprite extends HTMLElement {
         return this.radius;
     }
 
+    /**
+     * 
+     * @param {Game} game 
+     */
     update(game) {
         let radius = this.getRadius();
         let rect = this.getBoundingClientRect();

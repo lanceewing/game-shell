@@ -30,7 +30,7 @@ class Bullet extends Sprite {
 
     /**
      * 
-     * @param {*} e 
+     * @param {AnimationEvent} e 
      */
     animationEnd(e) {
         if (e.animationName && (e.animationName == 'shoot')) {

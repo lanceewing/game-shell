@@ -1,32 +1,34 @@
 class Ego extends Sprite {
 
+    /**
+     * Constructor for Ego.
+     */
     constructor() {
         super();
     }
 
     /**
+     * Initialises Ego.
      * 
-     * 
-     * @param {*} game 
+     * @param {Game} game 
      */
     init(game) {
         // Starting path for Ego. Will change in response to player movement.
-        // TODO: Dynamically change this based on screen dimension?
         this.pathX = 0;
-        this.pathY = 325;
-        this.updatePath();
+        this.pathY = game.CIRCLE_RADIUS;
+        this.updatePath(game);
     }
 
     /**
-     * 
+     * @param {Game} game
      */
-    updatePath() {
+    updatePath(game) {
         // Calculate heading from center point (0,0) to current ego position.
         this.heading = Math.atan2(0 - this.pathY, 0 - this.pathX);
 
         // Adjust current position according to desired radius and heading.
-        let startX = -(Math.round(Math.cos(this.heading) * 325));
-        let startY = -(Math.round(Math.sin(this.heading) * 325));
+        let startX = -(Math.round(Math.cos(this.heading) * game.CIRCLE_RADIUS));
+        let startY = -(Math.round(Math.sin(this.heading) * game.CIRCLE_RADIUS));
         let endX = -(startX);
         let endY = -(startY);
         let dx = (endX - startX);
@@ -39,7 +41,7 @@ class Ego extends Sprite {
 
     /**
      * 
-     * @param {*} game 
+     * @param {Game} game 
      */
     update(game) {
         super.update(game);
@@ -79,11 +81,11 @@ class Ego extends Sprite {
 
         if (movingAntiClockwise && !moveAntiClockwise) {
             this.classList.remove('anticlockwise');
-            this.updatePath();
+            this.updatePath(game);
         }
         if (movingClockwise && !moveClockwise) {
             this.classList.remove('clockwise');
-            this.updatePath();
+            this.updatePath(game);
         }
 
         if (moveAntiClockwise && !movingAntiClockwise) {
