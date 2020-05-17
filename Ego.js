@@ -15,7 +15,7 @@ class Ego extends Sprite {
     init(game) {
         // Starting path for Ego. Will change in response to player movement.
         this.pathX = 0;
-        this.pathY = game.CIRCLE_RADIUS;
+        this.pathY = Game.CIRCLE_RADIUS;
         this.updatePath(game);
     }
 
@@ -27,8 +27,8 @@ class Ego extends Sprite {
         this.heading = Math.atan2(0 - this.pathY, 0 - this.pathX);
 
         // Adjust current position according to desired radius and heading.
-        let startX = -(Math.round(Math.cos(this.heading) * game.CIRCLE_RADIUS));
-        let startY = -(Math.round(Math.sin(this.heading) * game.CIRCLE_RADIUS));
+        let startX = -(Math.round(Math.cos(this.heading) * Game.CIRCLE_RADIUS));
+        let startY = -(Math.round(Math.sin(this.heading) * Game.CIRCLE_RADIUS));
         let endX = -(startX);
         let endY = -(startY);
         let dx = (endX - startX);

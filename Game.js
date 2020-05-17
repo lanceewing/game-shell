@@ -1,14 +1,19 @@
 class Game {
 
     /**
+     * The radius of the game area, around which the Ego (i.e. player) sits on, that
+     * bullets start from, and stars stop moving at.
+     */
+    static CIRCLE_RADIUS = 310;
+
+    /**
      * Constructor for Game.
      * 
-     * @param {*} screen The element in which the game screen will be rendered.
+     * @param {HTMLElement} screen The element in which the game screen will be rendered.
      */
     constructor(screen) {
         this.screen = screen;
         this.time = 0;
-        this.CIRCLE_RADIUS = 310;
         this.defineCustomElements();
         this.userInput = new UserInput(this, screen);
         this.start();
@@ -58,7 +63,7 @@ class Game {
     /**
      * Adds a Sprite to the game.
      * 
-     * @param {*} obj The Sprite to add to the game.
+     * @param {Sprite} obj The Sprite to add to the game.
      */
     add(obj) {
         this.screen.appendChild(obj);
@@ -68,7 +73,7 @@ class Game {
     /**
      * Removes a Sprite from the game.
      * 
-     * @param {*} obj  The Sprite to remove from the game.
+     * @param {Sprite} obj  The Sprite to remove from the game.
      */
     remove(obj) {
         // Remove the Sprite from the screen.
@@ -87,6 +92,8 @@ class Game {
 
     /**
      * Scales the screen div to fit the whole screen.
+     * 
+     * @param {UIEvent} The resize event.
      */
     resizeScreen(e) {
         this.screen.style.setProperty('--scale-portrait', window.innerWidth / this.screen.offsetWidth);
@@ -123,7 +130,7 @@ class Game {
      * value from the previous frame, and now is the value for the current frame. The difference
      * between them is the delta, which is the time between the two frames.
      * 
-     * @param {Object} now The current time provided in the invocation of the game loop.
+     * @param {number} now The current time provided in the invocation of the game loop.
      */
     updateDelta(now) {
         if (now) {

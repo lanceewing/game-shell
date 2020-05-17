@@ -1,7 +1,15 @@
 class UserInput {
 
+  static LEFT  = 0x01;
+  static UP    = 0x02;
+  static RIGHT = 0x04;
+  static DOWN  = 0x08;
+
   /**
    * Constructor for UserInput.
+   * 
+   * @param {Game} game
+   * @param {HTMLElement} screen 
    */
   constructor(game, screen) {
     this.game = game;
@@ -34,7 +42,7 @@ class UserInput {
 
   /**
    * 
-   * @param {*} e 
+   * @param {MouseEvent} e 
    */
   mouseDown(e) {
     if (this.game.running) {
@@ -51,7 +59,7 @@ class UserInput {
 
   /**
    * 
-   * @param {*} e 
+   * @param {MouseEvent} e 
    */
   mouseUp(e) {
     if (this.game.running) {
@@ -67,7 +75,7 @@ class UserInput {
 
   /**
    * 
-   * @param {*} e 
+   * @param {MouseEvent} e 
    */
   mouseMove(e) {
     this.xMouse = e.pageX - this.screen.offsetLeft;
@@ -83,7 +91,7 @@ class UserInput {
 
   /**
    * 
-   * @param {*} e 
+   * @param {TouchEvent} e 
    */
   touchEnd(e) {
     if (this.game.running) {
@@ -101,7 +109,7 @@ class UserInput {
 
   /**
    * 
-   * @param {*} e 
+   * @param {TouchEvent} e 
    */
   touchStart(e) {
     if (this.game.running) {
@@ -116,7 +124,7 @@ class UserInput {
 
   /**
    * 
-   * @param {*} e 
+   * @param {TouchEvent} e 
    */
   touchMove(e) {
     if (this.game.running) {
@@ -131,7 +139,7 @@ class UserInput {
   /**
    * Invoked when a key is pressed down.
    *  
-   * @param {Object} e The key down event containing the key code.
+   * @param {KeyboardEvent} e The key down event containing the key code.
    */
   keyDown(e) {
     this.keys[e.keyCode] = 1;
@@ -144,7 +152,7 @@ class UserInput {
   /**
    * Invoked when a key is released.
    *  
-   * @param {Object} e The key up event containing the key code.
+   * @param {KeyboardEvent} e The key up event containing the key code.
    */
   keyUp(e) {
     this.keys[e.keyCode] = 0;
@@ -171,7 +179,7 @@ class UserInput {
   }
 
   /**
-   * 
+   * @param {Ego} ego The player Ego instance.
    */
   processUserInput(ego) {
     // Process any user input for the main player sprite (ego).
@@ -189,8 +197,3 @@ class UserInput {
     this.oldJoystick = this.joystick;
   }
 }
-
-UserInput.LEFT  = 0x01;
-UserInput.UP    = 0x02;
-UserInput.RIGHT = 0x04;
-UserInput.DOWN  = 0x08;

@@ -11,10 +11,10 @@ class Bullet extends Sprite {
      * Initialises the bullet with its start position and end position.
      * 
      * @param {Game} game
-     * @param {*} startX 
-     * @param {*} startY 
-     * @param {*} endX 
-     * @param {*} endY 
+     * @param {number} startX 
+     * @param {number} startY 
+     * @param {number} endX 
+     * @param {number} endY 
      */
     init(game, startX, startY, rotation, endX = 0, endY = 0) {
         this.game = game;
