@@ -86,6 +86,7 @@ x-ego::before {
   position: absolute;
   animation: flame 50ms linear alternate infinite;
   clip-path: polygon( -6px 14px, 14px -6px, 14px 14px, -6px 14px );
+  /* will-change: box-shadow, filter; */
 }
 @keyframes flame {
   0% {
