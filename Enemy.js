@@ -13,7 +13,7 @@ class Enemy extends Sprite {
      * @param {number} width 
      */
     init(game, width = 31) {
-        this.colour = 'red';
+        this.colour = 'brown';
 
         // COOL SHIPS
         // 4/6/12
@@ -21,15 +21,17 @@ class Enemy extends Sprite {
         // Generate top and bottom halves.
         // let canvasTop = this.buildCanvas(4, width, width);
         // let canvasBottom = this.buildCanvas(12, width, width);
-        let canvasTop = this.buildCanvas(4, width, width);
-        let canvasBottom = this.buildCanvas(14, width, width);
+        //let canvasTop = this.buildCanvas(4, width, width, 'grey');
+        // let canvasBottom = this.buildCanvas(14, width, width);
+        let canvasTop = this.buildShip(12, width, [this.colour, 'purple', 'green']);
+        let canvasBottom = this.buildShip(25, width, [this.colour, 'purple', 'green']);
 
         // Create the main canvas and then apply the top and bottom to it.
         let mainCtx = Util.create2dContext(width, width);
-        // mainCtx.shadowColor   = this.colour;
-        // mainCtx.shadowOffsetX = 0;
-        // mainCtx.shadowOffsetY = 0;
-        // mainCtx.shadowBlur    = 10;
+        mainCtx.shadowColor   = this.colour;
+        mainCtx.shadowOffsetX = 0;
+        mainCtx.shadowOffsetY = 0;
+        mainCtx.shadowBlur    = 10;
         mainCtx.drawImage(canvasTop,  0, 0, width / 2, width, 0, 0, width / 2, width);
         mainCtx.drawImage(canvasBottom, width / 2, 0, width / 2, width, width / 2, 0, width / 2, width);
 
@@ -39,10 +41,36 @@ class Enemy extends Sprite {
     /**
      * 
      * @param {number} seed 
+     * @param {number} startWidth 
+     * @param {string[]} colours 
+     * 
+     * @returns {HTMLCanvasElement} The canvas containing the drawn ship.
+     */
+    buildShip(seed, width, colours) {
+        let numOfLayers = colours.length;
+        let ctx = Util.create2dContext(width, width);
+        ctx.globalCompositeOperation = 'lighter';
+
+        for (let layer=0; layer<numOfLayers; layer++) {
+            let layerWidth = (width - (layer * 4));
+            let layerCanvas = this.buildCanvas(seed, layerWidth, layerWidth, colours[layer]);
+            ctx.drawImage(layerCanvas, 
+                0, 0, layerWidth, layerWidth,
+                (width - layerWidth) / 2, 
+                (width - layerWidth) / 2, 
+                layerWidth, layerWidth);
+        }
+
+        return ctx.canvas;
+    }
+
+    /**
+     * 
+     * @param {number} seed 
      * @param {number} iconWidth 
      * @param {number} iconHeight 
      */
-    buildCanvas(seed, iconWidth, iconHeight) {
+    buildCanvas(seed, iconWidth, iconHeight, colour) {
         let hashRand = [];
         let random = Util.random(seed);
         for (var i=0; i<20; i++) {
@@ -68,7 +96,7 @@ class Enemy extends Sprite {
             for (let y = 0; y < blockDensityY; y++) {
                 let j = y < blockMidY ? y : (blockDensityY - 1) - y;
                 if ((hashRand[i] >> j & 1) == 1) {
-                    ctx.fillStyle = this.colour;
+                    ctx.fillStyle = colour? colour : this.colour;
                 } else {
                     ctx.fillStyle = 'rgba(0,0,0,0.0)';
                 }
