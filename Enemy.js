@@ -10,9 +10,30 @@ class Enemy extends Sprite {
     /**
      * 
      * @param {Game} game 
+     * @param {number} width 
      */
-    init(game) {
+    init(game, width = 31) {
+        this.colour = 'red';
 
+        // COOL SHIPS
+        // 4/6/12
+
+        // Generate top and bottom halves.
+        // let canvasTop = this.buildCanvas(4, width, width);
+        // let canvasBottom = this.buildCanvas(12, width, width);
+        let canvasTop = this.buildCanvas(4, width, width);
+        let canvasBottom = this.buildCanvas(14, width, width);
+
+        // Create the main canvas and then apply the top and bottom to it.
+        let mainCtx = Util.create2dContext(width, width);
+        // mainCtx.shadowColor   = this.colour;
+        // mainCtx.shadowOffsetX = 0;
+        // mainCtx.shadowOffsetY = 0;
+        // mainCtx.shadowBlur    = 10;
+        mainCtx.drawImage(canvasTop,  0, 0, width / 2, width, 0, 0, width / 2, width);
+        mainCtx.drawImage(canvasBottom, width / 2, 0, width / 2, width, width / 2, 0, width / 2, width);
+
+        this.style.backgroundImage = 'url(' + mainCtx.canvas.toDataURL("image/png") + ')';
     }
 
     /**
@@ -30,7 +51,7 @@ class Enemy extends Sprite {
         
         let ctx = Util.create2dContext(iconWidth, iconHeight);
         let shadowRadius = (iconWidth / 2);
-        
+
         ctx.beginPath();
         ctx.arc(shadowRadius, shadowRadius, shadowRadius - 3, 0, 2 * Math.PI);
         ctx.clip();

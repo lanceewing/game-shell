@@ -27,6 +27,7 @@ class Game {
         customElements.define('x-ego', Ego);
         customElements.define('x-bullet', Bullet);
         customElements.define('x-star', Star);
+        customElements.define('x-enemy', Enemy);
     }
 
     /**
@@ -43,6 +44,10 @@ class Game {
         this.objs = [];
 
         this.createStars();
+
+        let enemy = new Enemy();
+        enemy.init(this);
+        this.add(enemy);
 
         this.userInput.enableInput();
         this.running = true;

@@ -6,9 +6,11 @@ class Util {
      * 
      * @param {number} w The width of the canvas.
      * @param {number} h The height of the canvas.
+     * 
+     * @returns {CanvasRenderingContext2D} The created 2D canvas context.
      */
     static create2dContext(w, h) {
-        var canvas = document.createElement('canvas');
+        let canvas = document.createElement('canvas');
         canvas.width = w;
         canvas.height = h || w;
         return (canvas.getContext('2d'));
